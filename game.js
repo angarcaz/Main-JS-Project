@@ -8,17 +8,26 @@ function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.trim().toLowerCase();
     computerSelection = computerSelection.trim().toLowerCase();
 
-    if (playerSelection === computerSelection) {
-        return "It's a tie! Try again! ";
-    } else if (
-        (playerSelection === 'rock' && computerSelection === 'scissors') ||
-        (playerSelection === 'paper' && computerSelection === 'rock') ||
-        (playerSelection === 'scissors' && computerSelection === 'paper')
+	if (
+        (playerSelection !== 'rock') &&
+        (playerSelection !== 'paper') &&
+        (playerSelection !== 'scissors')
     ) {
-        return 'You win! ' + playerSelection + ' beats ' + computerSelection;
-    } else {
-        return 'You lose! ' + computerSelection + ' beats ' + playerSelection;
-    }
+		console.log('Wrong Option :(.... Game Over Better luck next time :D')
+	  } 
+		else {
+			if (playerSelection === computerSelection) {
+				return "It's a tie! Try again! ";
+			} else if (
+				(playerSelection === 'rock' && computerSelection === 'scissors') ||
+				(playerSelection === 'paper' && computerSelection === 'rock') ||
+				(playerSelection === 'scissors' && computerSelection === 'paper')
+			) {
+				return 'You win! ' + playerSelection + ' beats ' + computerSelection;
+			} else {
+				return 'You lose! ' + computerSelection + ' beats ' + playerSelection;
+			}
+	}
 }
 
 function game() {
