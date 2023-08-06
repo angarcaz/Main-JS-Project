@@ -1,3 +1,5 @@
+let userName
+
 function computerPlay() {
     const choices = ['Rock', 'Paper', 'Scissors'];
     const randomIndex = Math.floor(Math.random() * choices.length);
@@ -6,15 +8,15 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
 	if (playerSelection === computerSelection) {
-		return "It's a tie! Try again! ";
+		return "It's a tie! Try again!";
 	} else if (
 		(playerSelection === 'rock' && computerSelection === 'scissors') ||
 		(playerSelection === 'paper' && computerSelection === 'rock') ||
 		(playerSelection === 'scissors' && computerSelection === 'paper')
 	) {
-		return 'You win! ' + playerSelection + ' beats ' + computerSelection;
+		return `You win! ${playerSelection} beats ${computerSelection}`
 	} else {
-		return 'You lose! ' + computerSelection + ' beats ' + playerSelection;
+		return `You lose! ${computerSelection} beats ${playerSelection}`
 	}
 }
 
@@ -26,11 +28,11 @@ function game() {
 	{
 		let playerSelection = "option";
 		do {
-			playerSelection = prompt("Which one do you choose: Rock, Paper, or Scissors?");
-			playerSelection = playerSelection.trim().toLowerCase();
+			playerSelection = prompt("Which one do you choose: 🪨 Rock, Paper 📃 or Scissors✂️?");
+			playerSelection = playerSelection ? playerSelection.trim().toLowerCase() : '';
 			selection = ((playerSelection !== 'rock') && (playerSelection !== 'paper') && (playerSelection !== 'scissors'));
 			if (selection) {
-				console.log('Wrong Option :( Select Again');
+				console.log(`😡 Come on, ${userName}, You are not following the rules... Please, choose one option`);
 			}
 		} while(selection);
         let computerSelection = computerPlay();
@@ -52,16 +54,21 @@ function game() {
     console.log(`Final Score: You ${playerScore} - ${computerScore} Computer`);
 
     if (playerScore === computerScore) {
-        console.log("It's a tie! No winner.");
+        alert("It's a tie! No winner.");
     } else if (playerScore > computerScore) {
-        console.log('Congratulations! You win the game!');
+        alert(`Congratulations, ${userName}! You win the game!`);
     } else {
-        console.log('Oops! Computer wins the game!');
+        alert(`I'm sorry, ${userName} I win, you lose`);
     }
+
+    let confirmPlayAgain = confirm("Do you want to play again?") 
+        if (confirmPlayAgain){
+            game()
+        }
 }
 
 function userWelcome(){
-    userName = prompt("👋 Hello! and welcome to ROCK 🪨, PAPER 📃 and SCISSORS ✂️, let me know... What's your name?")
+    userName = prompt("👋 Hello! and welcome to ROCK 🪨, PAPER 📃 or SCISSORS ✂️, let me know... What's your name?")
     if (!userName) {
         userName = prompt("Oh, come on, don't be shy... tell me")
         if (!userName) {
@@ -69,14 +76,18 @@ function userWelcome(){
             alert(`Whatever, I'll call you ${userName}`)
         }
     }
-    let confirmPlay = confirm(`Fantastic, nice to meet you ${userName}, let's start, are you ready?`)
+
+    setTimeout(() => {
+    let confirmPlay = confirm(`Fantastic, nice to meet you ${userName}, let's start, are you ready?`);
     if (confirmPlay) {
-		alert("Great! open your console and let's start")
-        game()
+        alert("Great! So now click the OK button, open your console and let's start");
+        setTimeout(game, 3000);
     } else {
-        alert("😂 I don't mind, make sure you're watching your console, let's start")
-        game()
-    }
+        alert("😂 I don't mind, click the OK button, open your console and let's start");
+        setTimeout(game, 3000);
+        }
+    }, 1000);
 }
+
 
 userWelcome();
