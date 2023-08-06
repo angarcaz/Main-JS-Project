@@ -61,7 +61,7 @@ function game() {
         alert(`I'm sorry, ${userName} I win ✌️, you lose`);
     }
 
-    let confirmPlayAgain = confirm(`${userName} do you want to play again?`) 
+    let confirmPlayAgain = confirm(`${userName}, do you want to play again?`) 
         if (confirmPlayAgain){
             game()
         } else {
