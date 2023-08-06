@@ -41,7 +41,10 @@ function game() {
             playerScore++;
         } else if (result.startsWith('You lose')) {
             computerScore++;
-        }
+        } else if (result.startsWith("It's a tie")) {
+			playerScore++;
+			computerScore++;
+		}
 		console.log(result);
     }
 
@@ -57,5 +60,23 @@ function game() {
     }
 }
 
+function userWelcome(){
+    userName = prompt("👋 Hello! and welcome to ROCK 🪨, PAPER 📃 and SCISSORS ✂️, let me know... What's your name?")
+    if (!userName) {
+        userName = prompt("Oh, come on, don't be shy... tell me")
+        if (!userName) {
+            userName = "Looser 💩"
+            alert(`Whatever, I'll call you ${userName}`)
+        }
+    }
+    let confirmPlay = confirm(`Fantastic, nice to meet you ${userName}, let's start, are you ready?`)
+    if (confirmPlay) {
+		alert("Great! open your console and let's start")
+        game()
+    } else {
+        alert("😂 I don't mind, make sure you're watching your console, let's start")
+        game()
+    }
+}
 
-game();
+userWelcome();
