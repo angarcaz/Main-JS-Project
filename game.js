@@ -5,47 +5,44 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.trim().toLowerCase();
-    computerSelection = computerSelection.trim().toLowerCase();
-
-	if (
-        (playerSelection !== 'rock') &&
-        (playerSelection !== 'paper') &&
-        (playerSelection !== 'scissors')
-    ) {
-		console.log('Wrong Option :(.... Game Over Better luck next time :D')
-	  } 
-		else {
-			if (playerSelection === computerSelection) {
-				return "It's a tie! Try again! ";
-			} else if (
-				(playerSelection === 'rock' && computerSelection === 'scissors') ||
-				(playerSelection === 'paper' && computerSelection === 'rock') ||
-				(playerSelection === 'scissors' && computerSelection === 'paper')
-			) {
-				return 'You win! ' + playerSelection + ' beats ' + computerSelection;
-			} else {
-				return 'You lose! ' + computerSelection + ' beats ' + playerSelection;
-			}
+	if (playerSelection === computerSelection) {
+		return "It's a tie! Try again! ";
+	} else if (
+		(playerSelection === 'rock' && computerSelection === 'scissors') ||
+		(playerSelection === 'paper' && computerSelection === 'rock') ||
+		(playerSelection === 'scissors' && computerSelection === 'paper')
+	) {
+		return 'You win! ' + playerSelection + ' beats ' + computerSelection;
+	} else {
+		return 'You lose! ' + computerSelection + ' beats ' + playerSelection;
 	}
 }
 
 function game() {
     let playerScore = 0;
     let computerScore = 0;
-
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Which one do you choose: Rock, Paper, or Scissors?");
-        const computerSelection = computerPlay();
+	let selection = false;
+    for (let i = 0; i < 5; i++) 
+	{
+		let playerSelection = "option";
+		do {
+			playerSelection = prompt("Which one do you choose: Rock, Paper, or Scissors?");
+			playerSelection = playerSelection.trim().toLowerCase();
+			selection = ((playerSelection !== 'rock') && (playerSelection !== 'paper') && (playerSelection !== 'scissors'));
+			if (selection) {
+				console.log('Wrong Option :( Select Again');
+			}
+		} while(selection);
+        let computerSelection = computerPlay();
+		computerSelection = computerSelection.trim().toLowerCase();
         const result = playRound(playerSelection, computerSelection);
-
-        console.log(result);
 
         if (result.startsWith('You win')) {
             playerScore++;
         } else if (result.startsWith('You lose')) {
             computerScore++;
         }
+		console.log(result);
     }
 
     console.log('Game Over!');
