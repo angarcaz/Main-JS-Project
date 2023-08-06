@@ -28,7 +28,7 @@ function game() {
 	{
 		let playerSelection = "option";
 		do {
-			playerSelection = prompt("Which one do you choose: 🪨 Rock, Paper 📃 or Scissors✂️?");
+			playerSelection = prompt("Which one do you choose: Rock 🪨, Paper 📃 or Scissors✂️?");
 			playerSelection = playerSelection ? playerSelection.trim().toLowerCase() : '';
 			selection = ((playerSelection !== 'rock') && (playerSelection !== 'paper') && (playerSelection !== 'scissors'));
 			if (selection) {
@@ -47,7 +47,7 @@ function game() {
 			playerScore++;
 			computerScore++;
 		}
-		console.log(result);
+		console.log(`Round ${i+1}: ${result}`);
     }
 
     console.log('Game Over!');
@@ -56,19 +56,21 @@ function game() {
     if (playerScore === computerScore) {
         alert("It's a tie! No winner.");
     } else if (playerScore > computerScore) {
-        alert(`Congratulations, ${userName}! You win the game!`);
+        alert(`Congratulations, ${userName}! You win the game! 👏🏆`);
     } else {
-        alert(`I'm sorry, ${userName} I win, you lose`);
+        alert(`I'm sorry, ${userName} I win ✌️, you lose`);
     }
 
-    let confirmPlayAgain = confirm("Do you want to play again?") 
+    let confirmPlayAgain = confirm(`${userName} do you want to play again?`) 
         if (confirmPlayAgain){
             game()
+        } else {
+            alert('👋 Bye bye!')
         }
 }
 
 function userWelcome(){
-    userName = prompt("👋 Hello! and welcome to ROCK 🪨, PAPER 📃 or SCISSORS ✂️, let me know... What's your name?")
+    userName = prompt("👋 Hello! and welcome to Rock 🪨, Paper 📃 or Scissors✂️, let me know... What's your name?")
     if (!userName) {
         userName = prompt("Oh, come on, don't be shy... tell me")
         if (!userName) {
