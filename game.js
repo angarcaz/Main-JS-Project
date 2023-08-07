@@ -1,7 +1,7 @@
 let userName
 
 function computerPlay() {
-    const choices = ['Rock', 'Paper', 'Scissors'];
+    const choices = ['rock', 'paper', 'scissors'];
     const randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
@@ -39,13 +39,13 @@ function promptChecker() {
 function game() {
     let playerScore = 0;
     let computerScore = 0;
-	let selection = false;
+
     for (let i = 0; i < 5; i++) 
 	{
 		let playerSelection = "option";
 		playerSelection = promptChecker();
         let computerSelection = computerPlay();
-		computerSelection = computerSelection.trim().toLowerCase();
+		computerSelection = computerSelection.toLowerCase();
         const result = playRound(playerSelection, computerSelection);
 
         if (result.startsWith('You win')) {
@@ -69,7 +69,12 @@ function game() {
     } else {
         alert(`I'm sorry, ${userName} I win ✌️, you lose`);
     }
-	
+    
+	playAgain()
+
+}
+
+function playAgain() {
     let confirmPlayAgain = confirm(`${userName}, do you want to play again?`) 
         if (confirmPlayAgain){
             game()
@@ -78,6 +83,7 @@ function game() {
         }
 	
 }
+
 
 function userWelcome(){
     userName = prompt("👋 Hello! and welcome to Rock 🪨, Paper 📃 or Scissors✂️, let me know... What's your name?")
