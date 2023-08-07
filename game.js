@@ -20,6 +20,18 @@ function playRound(playerSelection, computerSelection) {
 	}
 }
 
+function promptChecker() {
+	do {
+		playerSelection = prompt("Which one do you choose: Rock 🪨, Paper 📃 or Scissors✂️?");
+		playerSelection = playerSelection ? playerSelection.trim().toLowerCase() : '';
+		selection = ((playerSelection !== 'rock') && (playerSelection !== 'paper') && (playerSelection !== 'scissors'));
+		if (selection) {
+			console.log(`😡 Come on, ${userName}, You are not following the rules... Please, choose one option`);
+		}
+	} while(selection);
+	return playerSelection;
+}
+
 function game() {
     let playerScore = 0;
     let computerScore = 0;
@@ -27,14 +39,7 @@ function game() {
     for (let i = 0; i < 5; i++) 
 	{
 		let playerSelection = "option";
-		do {
-			playerSelection = prompt("Which one do you choose: Rock 🪨, Paper 📃 or Scissors✂️?");
-			playerSelection = playerSelection ? playerSelection.trim().toLowerCase() : '';
-			selection = ((playerSelection !== 'rock') && (playerSelection !== 'paper') && (playerSelection !== 'scissors'));
-			if (selection) {
-				console.log(`😡 Come on, ${userName}, You are not following the rules... Please, choose one option`);
-			}
-		} while(selection);
+		playerSelection = promptChecker();
         let computerSelection = computerPlay();
 		computerSelection = computerSelection.trim().toLowerCase();
         const result = playRound(playerSelection, computerSelection);
