@@ -22,7 +22,7 @@ function playRound(playerSelection, computerSelection) {
 function playAgain() {
     let confirmPlayAgain = confirm(`${userName}, do you want to play again?`);
     if (confirmPlayAgain) {
-        game();
+        setTimeout(game, 100);
     } else {
         alert('👋 Bye bye!');
     }
@@ -34,9 +34,9 @@ function promptChecker() {
         playerSelection = prompt("Which one do you choose: Rock 🪨, Paper 📃 or Scissors✂️?");
         if (playerSelection === null) {
             alert("Thank You for Playing. Bye Bye");
-            throw '';
+            break;
         }
-        playerSelection = playerSelection ? playerSelection.trim().toLowerCase() : '';
+        playerSelection = playerSelection ? playerSelection.toLowerCase() : '';
         selection = ((playerSelection !== 'rock') && (playerSelection !== 'paper') && (playerSelection !== 'scissors'));
         if (selection) {
             console.log(`😡 Come on, ${userName}, You are not following the rules... Please, choose one option`);
@@ -52,6 +52,13 @@ function game() {
     for (let i = 0; i < 5; i++) {
         let playerSelection = "option";
         playerSelection = promptChecker();
+        if (!playerSelection) {
+            return (
+                console.log('You cancelled the game. See you later')
+            )
+                ;
+
+        }
         let computerSelection = computerPlay();
         computerSelection = computerSelection.toLowerCase();
         const result = playRound(playerSelection, computerSelection);
