@@ -23,6 +23,10 @@ function playRound(playerSelection, computerSelection) {
 function promptChecker() {
 	do {
 		playerSelection = prompt("Which one do you choose: Rock 🪨, Paper 📃 or Scissors✂️?");
+		if (playerSelection === null) {
+			alert("Thank You for Playing. Bye Bye");
+			throw '';
+		} 
 		playerSelection = playerSelection ? playerSelection.trim().toLowerCase() : '';
 		selection = ((playerSelection !== 'rock') && (playerSelection !== 'paper') && (playerSelection !== 'scissors'));
 		if (selection) {
@@ -65,13 +69,14 @@ function game() {
     } else {
         alert(`I'm sorry, ${userName} I win ✌️, you lose`);
     }
-
+	
     let confirmPlayAgain = confirm(`${userName}, do you want to play again?`) 
         if (confirmPlayAgain){
             game()
         } else {
             alert('👋 Bye bye!')
         }
+	
 }
 
 function userWelcome(){
